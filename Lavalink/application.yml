@@ -1,0 +1,64 @@
+server:
+  port: 2333
+  address: 127.0.0.1
+lavalink:
+  server:
+    password: "kikiki21"
+    sources:
+      youtube: false # Desactivado el nativo obsoleto, corre mediante el plugin
+      bandcamp: true
+      soundcloud: true
+      twitch: true
+      vimeo: true
+      http: true
+      local: false
+    filters:
+      volume: true
+      equalizer: true
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
+    opusEncodingQuality: 10
+    resamplingQuality: HIGH
+    trackStuckThresholdMs: 10000
+    useSeekGhosting: true
+    youtubePlaylistLoadLimit: 6
+    playerUpdateInterval: 5
+
+plugins:
+  lavasrc:
+    providers:
+      # 🛠️ Estrategia de respaldo: Primero busca por texto en YouTube, si falla salta directo a SoundCloud
+      - "scsearch:%TRACK% %ARTIST%"
+      - "ytsearch:%TRACK% %ARTIST%"
+    sources:
+      spotify: true
+    spotify:
+      clientId: "07977b069eca48a5a466cc62dcf7a283"
+      clientSecret: "2b851a3c623144f7b5e5a431124fb068"
+      countryCode: "US"
+
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectVideoIds: true
+    allowDirectPlaylistIds: true
+    clients:
+      - TVHTML5EMBEDDED
+      - ANDROID_VR
+      - WEB
+      - WEB_EMBEDDED_PLAYER
+      - TV
+    # 🛠️ NUEVO: Fuerza a que cada cliente use los tokens OAuth generados
+    clientOptions:
+      TVHTML5EMBEDDED:
+        oauth: true
+      ANDROID_VR:
+        oauth: true
+      WEB:
+        oauth: true
+      WEB_EMBEDDED_PLAYER:
+        oauth: true
+      TV:
+        oauth: true
+    oauth:
+      enabled: true
