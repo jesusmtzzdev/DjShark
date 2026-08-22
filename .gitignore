@@ -1,6 +1,7 @@
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.env
 *.py[codz]
 *$py.class
 
@@ -12,7 +13,7 @@ __pycache__/
 build/
 develop-eggs/
 dist/
-downloads/
+downloads/ñ
 eggs/
 .eggs/
 lib/

@@ -2,6 +2,10 @@ import discord
 from discord.ext import commands
 import wavelink
 import logging
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 
@@ -15,7 +19,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def setup_hook():
     nodo = wavelink.Node(
         uri="http://127.0.0.1:2333", 
-        password="kikiki21"
+        password=os.getenv("LAVALINK_PASSWORD")
     )
     # Conectamos al pool de forma paralela sin congelar el login del bot
     bot.loop.create_task(wavelink.Pool.connect(nodes=[nodo], client=bot))
@@ -69,5 +73,5 @@ async def stop(ctx):
         await ctx.send("❌ El bot no está en ningún canal de voz.")
 
 # RECUERDA: Cambia este Token por el nuevo que reseteaste en tu panel de Discord Developer
-TOKEN_DISCORD = "MTU0MDM4ODc0MjU2MzUwNDIyMA.GUKOdd.EqlxOpwaFyddDeXDkm-jJhVFOj041srBWLjLPs"
+TOKEN_DISCORD = os.getenv("DISCORD_TOKEN")
 bot.run(TOKEN_DISCORD)

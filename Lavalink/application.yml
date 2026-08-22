@@ -3,7 +3,7 @@ server:
   address: 127.0.0.1
 lavalink:
   server:
-    password: "kikiki21"
+    password: "${LAVALINK_PASSWORD}"
     sources:
       youtube: false # Desactivado el nativo obsoleto, corre mediante el plugin
       bandcamp: true
@@ -33,8 +33,8 @@ plugins:
     sources:
       spotify: true
     spotify:
-      clientId: "07977b069eca48a5a466cc62dcf7a283"
-      clientSecret: "2b851a3c623144f7b5e5a431124fb068"
+      clientId: "${SPOTIFY_CLIENT_ID}"
+      clientSecret: "${SPOTIFY_CLIENT_SECRET}"
       countryCode: "US"
 
   youtube:
